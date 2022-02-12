@@ -1,0 +1,43 @@
+{
+  "name": "@sa-mp/streamer",
+  "version": "1.0.0-alpha",
+  "description": "Streamer for NodeSamp.",
+  "repository": "github:dev2alert/node-samp-streamer",
+  "author": "dev2alert",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "scripts": {
+    "compile": "tsc",
+    "dev": "cross-env NODE_ENV=development tsc-watch",
+    "postinstall": "node ./dist/install.js"
+  },
+  "devDependencies": {
+    "@sa-mp/core": "1.x",
+    "@types/download": "^8.0.1",
+    "@types/node": "^16.4.13",
+    "cross-env": "^7.0.3",
+    "tsc-watch": "^4.6.0"
+  },
+  "dependencies": {
+    "@sa-mp/amx": "1.x",
+    "download": "^8.0.0",
+    "tsee": "^1.3.2"
+  },
+  "peerDependencies": {
+    "@sa-mp/core": "1.x"
+  },
+  "config": {
+    "samp": {
+      "plugins": [
+        {
+          "platform": "win32",
+          "path": "./streamer.dll"
+        },
+        {
+          "platform": "linux",
+          "path": "./streamer.so"
+        }
+      ]
+    }
+  }
+}

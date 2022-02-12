@@ -1,0 +1,5 @@
+/node_modules
+/dist/**/*.js
+!/dist/install.js
+/dist/**/*.d.ts
+/plugins
