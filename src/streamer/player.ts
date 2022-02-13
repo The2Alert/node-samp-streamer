@@ -1,6 +1,6 @@
 import * as amx from "@sa-mp/amx";
 import {Player, Position} from "@sa-mp/core";
-import {StreamerTypes} from ".";
+import {StreamerTypes, DynamicObject, DynamicCP, DynamicRaceCP} from "..";
 
 export interface StreamerUpdateExOptions extends Position {
     world?: number;
@@ -60,5 +60,29 @@ export class StreamerPlayer {
     public getAllVisibleItems(type: StreamerTypes, maxItems: number): number[] {
         const [items] = amx.callNative("Streamer_GetAllVisibleItems", "iiAi", this.player.id, type, maxItems, maxItems);
         return items as number[];
+    }
+
+    public attachCamera(object: DynamicObject): void {
+        amx.callNative("AttachCameraToDynamicObject", "ii", this.player.id, object.id);
+    }
+
+    public get cameraTargetObject(): DynamicObject {
+        return DynamicObject.getById(amx.callNative("GetPlayerCameraTargetDynObject", "i", this.player.id).retval);
+    }
+
+    public isInCheckpoint(checkpoint: DynamicCP): boolean {
+        return Boolean(amx.callNative("IsPlayerInDynamicCP", "ii", this.player.id, checkpoint.id).retval);
+    }
+
+    public getVisibleCheckpoint(): DynamicCP {
+        return DynamicCP.getById(amx.callNative("GetPlayerVisibleDynamicCP", "i", this.player.id).retval);
+    }
+
+    public isInRaceCheckpoint(checkpoint: DynamicRaceCP): boolean {
+        return Boolean(amx.callNative("IsPlayerInDynamicRaceCP", "ii", this.player.id, checkpoint.id).retval);
+    }
+
+    public getVisibleRaceCheckpoint(): DynamicRaceCP {
+        return DynamicRaceCP.getById(amx.callNative("GetPlayerVisibleDynamicRaceCP", "i", this.player.id).retval);
     }
 }
