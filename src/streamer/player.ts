@@ -1,6 +1,6 @@
 import * as amx from "@sa-mp/amx";
-import {Player, Position} from "@sa-mp/core";
-import {StreamerTypes, DynamicObject, DynamicCP, DynamicRaceCP} from "..";
+import {Group, Player, Position} from "@sa-mp/core";
+import {StreamerTypes, DynamicObject, DynamicCP, DynamicRaceCP, DynamicArea, StreamerItem, DynamicActor} from "..";
 
 export interface StreamerUpdateExOptions extends Position {
     world?: number;
@@ -84,5 +84,33 @@ export class StreamerPlayer {
 
     public getVisibleRaceCheckpoint(): DynamicRaceCP {
         return DynamicRaceCP.getById(amx.callNative("GetPlayerVisibleDynamicRaceCP", "i", this.player.id).retval);
+    }
+
+    public isInArea(area: DynamicArea, recheck: number = 0): boolean {
+        return Boolean(amx.callNative("IsPlayerInDynamicArea", "iii", this.player.id, area.id, recheck).retval);
+    }
+
+    public isInAnyArea(recheck: number = 0): boolean {
+        return Boolean(amx.callNative("IsPlayerInAnyDynamicArea", "ii", this.player.id, recheck).retval);
+    }
+
+    public getAreas(max: number): Group<DynamicArea> {
+        const [nativeAreas] = amx.callNative("GetPlayerDynamicAreas", "iAi", this.player.id, max, max) as unknown as [number[]];
+        const result: Group<DynamicArea> = new Group;
+        for(const id of nativeAreas)
+            result.push(DynamicArea.getById(id));
+        return result;
+    }
+
+    public getNumberAreas(): number {
+        return amx.callNative("GetPlayerNumberDynamicAreas", "i", this.player.id).retval;
+    }
+
+    public get targetActor(): DynamicActor {
+        return DynamicActor.getById(amx.callNative("GetPlayerTargetDynamicActor", "i", this.player.id).retval);
+    }
+
+    public get cameraTargetActor(): DynamicActor {
+        return DynamicActor.getById(amx.callNative("GetPlayerCameraTargetDynActor", "i", this.player.id).retval);
     }
 }

@@ -1,7 +1,8 @@
-import {DynamicAreaFunctions} from "./functions";
-
-export class DynamicArea extends DynamicAreaFunctions {
-    public static getById(id: number): DynamicArea {
-        return new DynamicArea(id);
-    }
-}
+export * from "./area";
+export * from "./circle";
+export * from "./cylinder";
+export * from "./sphere";
+export * from "./rectangle";
+export * from "./cuboid";
+export * from "./cube";
+export * from "./polygon";

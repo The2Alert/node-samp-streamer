@@ -5,3 +5,5 @@ export * from "./pickup";
 export * from "./checkpoint";
 export * from "./race-checkpoint";
 export * from "./map-icon";
+export * from "./text3dlabel";
+export * from "./actor";
