@@ -26,6 +26,14 @@ export class DynamicCPFunctions {
         return Boolean(amx.callNative("IsValidDynamicCP", "i", checkpoint.id).retval);
     }
 
+    public static destroyAll(): void {
+        amx.callNative("DestroyAllDynamicCPs", "");
+    }
+
+    public static get count(): number {
+        return amx.callNative("CountDynamicCPs", "").retval;
+    }
+
     public id: number = Streamer.constants.INVALID_ID;
     
     constructor(public readonly idOrOptions: number | DynamicCPOptions) {
@@ -59,5 +67,9 @@ export class DynamicCPFunctions {
 
     public get item(): StreamerItem {
         return StreamerItem.get(StreamerTypes.CP, this.id);
+    }
+
+    public is(checkpoint: DynamicCP): boolean {
+        return this.id === checkpoint.id;
     }
 }

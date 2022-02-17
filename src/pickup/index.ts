@@ -1,3 +1,3 @@
-import {DynamicPickupFunctions} from "./functions";
-
-export class DynamicPickup extends DynamicPickupFunctions {}
+export * from "./pickup";
+export * from "./ex";
+export * from "./functions";

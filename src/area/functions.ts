@@ -51,6 +51,14 @@ export class DynamicAreaFunctions {
         return amx.callNative("GetNumberDynamicAreasForLine", "ffffff", x1, y1, z1, x2, y2, z2).retval;
     }
 
+    public static destroyAll(): void {
+        amx.callNative("DestroyAllDynamicAreas", "");
+    }
+
+    public static get count(): number {
+        return amx.callNative("CountDynamicAreas", "").retval;
+    }
+
     protected constructor(public id: number = Streamer.constants.INVALID_ID) {}
 
     public destroy(): void {
@@ -117,5 +125,9 @@ export class DynamicAreaFunctions {
 
     public get item(): StreamerItem {
         return StreamerItem.get(StreamerTypes.AREA, this.id);
+    }
+
+    public is(area: DynamicArea): boolean {
+        return this.id === area.id;
     }
 }

@@ -1,6 +1,6 @@
 import {Player, Position} from "@sa-mp/core";
 import * as amx from "@sa-mp/amx";
-import {DynamicArea, Streamer, DynamicActor} from "..";
+import {DynamicArea, Streamer, DynamicActor, StreamerItem, StreamerTypes} from "..";
 
 export interface DynamicActorOptions extends Position {
     model: number;
@@ -137,5 +137,13 @@ export class DynamicActorFunctions {
 
     public get invulnerable(): boolean {
         return Boolean(amx.callNative("IsDynamicActorInvulnerable", "i", this.id).retval);
+    }
+
+    public get item(): StreamerItem {
+        return StreamerItem.get(StreamerTypes.ACTOR, this.id);
+    }
+
+    public is(actor: DynamicActor): boolean {
+        return this.id === actor.id;
     }
 }

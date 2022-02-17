@@ -1,3 +1,3 @@
-import {DynamicActorFunctions} from "./functions";
-
-export class DynamicActor extends DynamicActorFunctions {}
+export * from "./actor";
+export * from "./functions";
+export * from "./ex";

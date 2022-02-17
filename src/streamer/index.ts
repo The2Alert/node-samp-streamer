@@ -4,6 +4,7 @@ import * as amx from "@sa-mp/amx";
 import {StreamerFunctions} from "./functions";
 import {StreamerItem, StreamerTypes} from ".";
 
+export * from "./functions";
 export * from "./enums";
 export * from "./player";
 export * from "./item";

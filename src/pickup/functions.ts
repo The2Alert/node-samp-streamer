@@ -27,6 +27,14 @@ export class DynamicPickupFunctions {
         return Boolean(amx.callNative("IsValidDynamicPickup", "i", pickup.id).retval);
     }
 
+    public static destroyAll(): void {
+        amx.callNative("DestroyAllDynamicPickups", "");
+    }
+
+    public static get count(): number {
+        return amx.callNative("CountDynamicPickups", "").retval;
+    }
+
     public id: number = Streamer.constants.INVALID_ID;
 
     constructor(public readonly idOrOptions: number | DynamicPickupOptions) {
@@ -61,5 +69,9 @@ export class DynamicPickupFunctions {
 
     public get item(): StreamerItem {
         return StreamerItem.get(StreamerTypes.PICKUP, this.id);
+    }
+
+    public is(pickup: DynamicPickup): boolean {
+        return this.id === pickup.id;
     }
 }

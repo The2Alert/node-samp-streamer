@@ -28,6 +28,14 @@ export class DynamicRaceCPFunctions {
         return Boolean(amx.callNative("IsValidDynamicRaceCP", "i", checkpoint.id).retval);
     }
 
+    public static destroyAll(): void {
+        amx.callNative("DestroyAllDynamicRaceCPs", "");
+    }
+
+    public static get count(): number {
+        return amx.callNative("CountDynamicRaceCPs", "").retval;
+    }
+
     public id: number = Streamer.constants.INVALID_ID;
 
     constructor(public readonly idOrOptions: number | DynamicRaceCPOptions) {
@@ -63,5 +71,9 @@ export class DynamicRaceCPFunctions {
 
     public get item(): StreamerItem {
         return StreamerItem.get(StreamerTypes.RACE_CP, this.id);
+    }
+
+    public is(checkpoint: DynamicRaceCP): boolean {
+        return this.id === checkpoint.id;
     }
 }

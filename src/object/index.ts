@@ -1,3 +1,3 @@
-import {DynamicObjectFunctions} from "./functions";
-
-export class DynamicObject extends DynamicObjectFunctions {}
+export * from "./object";
+export * from "./functions";
+export * from "./ex";

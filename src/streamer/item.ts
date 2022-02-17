@@ -129,4 +129,8 @@ export class StreamerItem {
     public set offset({x, y, z}: Position) {
         amx.callNative("Streamer_SetItemOffset", "iifff", this.type, this.id, x, y, z);
     }
+
+    public is(item: StreamerItem): boolean {
+        return this.id === item.id;
+    }
 }

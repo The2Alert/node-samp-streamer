@@ -113,4 +113,28 @@ export class StreamerPlayer {
     public get cameraTargetActor(): DynamicActor {
         return DynamicActor.getById(amx.callNative("GetPlayerCameraTargetDynActor", "i", this.player.id).retval);
     }
+
+    public toggleCheckpoint(checkpoint: DynamicCP, toggle: boolean): void {
+        amx.callNative("TogglePlayerDynamicCP", "iii", this.player.id, checkpoint.id, Number(toggle));
+    }
+
+    public toggleAllCheckpoints(toggle: boolean, exceptions: DynamicCP[] = [DynamicCP.getById(-1)]): void {
+        amx.callNative("TogglePlayerAllDynamicCPs", "iiai", this.player.id, Number(toggle), exceptions.map(({id}) => id), exceptions.length);
+    }
+
+    public toggleRaceCheckpoint(checkpoint: DynamicRaceCP, toggle: boolean): void {
+        amx.callNative("TogglePlayerDynamicRaceCP", "iii", this.player.id, checkpoint.id, Number(toggle));
+    }
+
+    public toggleAllRaceCheckpoints(toggle: boolean, exceptions: DynamicRaceCP[] = [DynamicRaceCP.getById(-1)]): void {
+        amx.callNative("TogglePlayerAllDynamicRaceCPs", "iiai", this.player.id, Number(toggle), exceptions.map(({id}) => id), exceptions.length);
+    }
+
+    public toggleArea(area: DynamicArea, toggle: boolean): void {
+        amx.callNative("TogglePlayerDynamicArea", "iii", this.player.id, area.id, Number(toggle));
+    }
+
+    public toggleAllAreas(toggle: boolean, exceptions: DynamicArea[] = [DynamicArea.getById(-1)]): void {
+        amx.callNative("TogglePlayerAllDynamicAreas", "iiai", this.player.id, Number(toggle), exceptions.map(({id}) => id), exceptions.length);
+    }
 }

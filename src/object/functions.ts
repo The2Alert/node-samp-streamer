@@ -90,6 +90,14 @@ export class DynamicObjectFunctions {
         return Boolean(amx.callNative("IsValidDynamicObject", "i", object.id).retval);
     }
 
+    public static destroyAll(): void {
+        amx.callNative("DestroyAllDynamicObjects", "");
+    }
+
+    public static get count(): number {
+        return amx.callNative("CountDynamicObjects", "").retval;
+    }
+
     public id: number = Streamer.constants.INVALID_ID;
 
     constructor(public readonly idOrOptions: number | DynamicObjectOptions) {
@@ -220,5 +228,9 @@ export class DynamicObjectFunctions {
 
     public get item(): StreamerItem {
         return StreamerItem.get(StreamerTypes.OBJECT, this.id);
+    }
+
+    public is(object: DynamicObject): boolean {
+        return this.id === object.id;
     }
 }
