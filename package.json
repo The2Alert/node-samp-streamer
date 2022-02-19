@@ -1,6 +1,6 @@
 {
   "name": "@sa-mp/streamer",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0",
   "description": "Streamer for NodeSamp.",
   "repository": "github:dev2alert/node-samp-streamer",
   "author": "dev2alert",

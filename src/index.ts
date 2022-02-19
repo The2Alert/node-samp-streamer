@@ -8,3 +8,4 @@ export * from "./map-icon";
 export * from "./text3dlabel";
 export * from "./actor";
 export * from "./decorators";
+export * from "./context";
