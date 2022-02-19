@@ -2,7 +2,17 @@
   "name": "@sa-mp/streamer",
   "version": "1.0.0",
   "description": "Streamer for NodeSamp.",
+  "keywords": [
+    "nodesamp",
+    "sa-mp",
+    "samp",
+    "plugin",
+    "streamer"
+  ],
   "repository": "github:dev2alert/node-samp-streamer",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "dev2alert",
   "license": "MIT",
   "main": "./dist/index.js",
